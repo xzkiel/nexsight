@@ -14,10 +14,10 @@ import {
 } from '@/components/ui/Icons';
 
 const publicNavigation = [
+  { name: 'Home', href: '/', icon: Bot },
   { name: 'Markets', href: '/markets', icon: LayoutGrid },
   { name: 'Leaderboard', href: '/leaderboard', icon: Trophy },
   { name: 'Portfolio', href: '/portfolio', icon: Briefcase },
-  { name: 'Agents', href: '/agents', icon: Bot },
 ];
 
 const adminNavigation = [
@@ -41,14 +41,14 @@ export function Sidebar() {
           <svg width="24" height="24" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
             <defs>
               <linearGradient id="side-prism" x1="0" y1="0" x2="64" y2="64">
-                <stop offset="0%" stopColor="#55D292"/>
-                <stop offset="100%" stopColor="#9945FF"/>
+                <stop offset="0%" stopColor="#55D292" />
+                <stop offset="100%" stopColor="#9945FF" />
               </linearGradient>
             </defs>
-            <path d="M32 8L56 52H8L32 8Z" stroke="url(#side-prism)" strokeWidth="2.5" fill="none"/>
-            <line x1="46" y1="28" x2="56" y2="22" stroke="#55D292" strokeWidth="1.5" opacity="0.8"/>
-            <line x1="46" y1="32" x2="58" y2="32" stroke="#6FFFB0" strokeWidth="1.5" opacity="0.6"/>
-            <line x1="46" y1="36" x2="56" y2="42" stroke="#9945FF" strokeWidth="1.5" opacity="0.8"/>
+            <path d="M32 8L56 52H8L32 8Z" stroke="url(#side-prism)" strokeWidth="2.5" fill="none" />
+            <line x1="46" y1="28" x2="56" y2="22" stroke="#55D292" strokeWidth="1.5" opacity="0.8" />
+            <line x1="46" y1="32" x2="58" y2="32" stroke="#6FFFB0" strokeWidth="1.5" opacity="0.6" />
+            <line x1="46" y1="36" x2="56" y2="42" stroke="#9945FF" strokeWidth="1.5" opacity="0.8" />
           </svg>
           <span className="font-semibold text-[15px] text-white tracking-tight">
             Nex<span className="text-[var(--text-secondary)] font-normal">sight</span>
@@ -59,7 +59,9 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 px-3 py-4 space-y-1">
         {navigation.map((item) => {
-          const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
+          const isActive = item.href === '/'
+            ? pathname === '/'
+            : pathname === item.href || pathname?.startsWith(item.href + '/');
           return (
             <Link
               key={item.href}

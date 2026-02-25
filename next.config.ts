@@ -18,6 +18,20 @@ const nextConfig: NextConfig = {
   },
   // Enable server-side packages that need native bindings
   serverExternalPackages: ["pg", "ioredis"],
+  async redirects() {
+    return [
+      {
+        source: '/agents',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/agent',
+        destination: '/',
+        permanent: false,
+      }
+    ];
+  },
   async headers() {
     return [
       {

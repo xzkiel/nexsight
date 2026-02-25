@@ -8,10 +8,10 @@ import { ADMIN_WALLETS } from '@/lib/constants';
 import { LayoutGrid, Trophy, Briefcase, ShieldAlert, Bot } from '@/components/ui/Icons';
 
 const publicNavigation = [
+  { name: 'Home', href: '/', icon: Bot },
   { name: 'Markets', href: '/markets', icon: LayoutGrid },
   { name: 'Board', href: '/leaderboard', icon: Trophy },
   { name: 'Portfolio', href: '/portfolio', icon: Briefcase },
-  { name: 'Agents', href: '/agents', icon: Bot },
 ];
 
 export function MobileNav() {
@@ -27,7 +27,9 @@ export function MobileNav() {
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[var(--bg-sidebar)] border-t border-[var(--border)]">
       <div className="flex items-center justify-around h-14">
         {navigation.map((item) => {
-          const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
+          const isActive = item.href === '/'
+            ? pathname === '/'
+            : pathname === item.href || pathname?.startsWith(item.href + '/');
           return (
             <Link
               key={item.href}
