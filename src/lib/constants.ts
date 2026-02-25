@@ -10,7 +10,7 @@ export const COLLATERAL_MINT = 'So11111111111111111111111111111111111111112'; //
 export const COLLATERAL_DECIMALS = 9;
 export const COLLATERAL_SYMBOL = 'SOL';
 
-// $NEXSIGHT token mint address
+// $NEX token mint address
 export const NEXSIGHT_MINT = process.env.NEXT_PUBLIC_NEXSIGHT_MINT || '';
 
 // Admin wallets authorized for platform management (init, resolve, pause)

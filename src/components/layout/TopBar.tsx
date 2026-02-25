@@ -34,15 +34,15 @@ export function TopBar() {
         </div>
       </div>
 
-      {/* Right actions: $NEXSIGHT | Select Wallet */}
+      {/* Right actions: $NEX | Select Wallet */}
       <div className="flex items-center gap-2">
-        {/* $NEXSIGHT — click to copy mint */}
+        {/* $NEX — click to copy mint */}
         <button
           onClick={handleCopyMint}
-          title={NEXSIGHT_MINT ? `Copy mint: ${NEXSIGHT_MINT}` : '$NEXSIGHT'}
+          title={NEXSIGHT_MINT ? `Copy mint: ${NEXSIGHT_MINT}` : '$NEX'}
           className="wallet-adapter-button wallet-adapter-button-trigger"
         >
-          {copied ? 'Copied!' : '$NEXSIGHT'}
+          {copied ? 'Copied!' : '$NEX'}
         </button>
 
         {/* Wallet */}
