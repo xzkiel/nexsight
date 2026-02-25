@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import { useMarkets } from '@/hooks/useMarkets';
 import { AdminMarketCard } from '@/components/admin/AdminMarketCard';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { ShieldAlert, Lock } from 'lucide-react';
+import { ShieldAlert, Lock } from '@/components/ui/Icons';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { getProgram, getProvider } from '@/services/anchor';
 import { BN } from '@coral-xyz/anchor';

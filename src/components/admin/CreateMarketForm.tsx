@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useCreateMarket } from '@/hooks/useCreateMarket';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { Loader2, Plus } from 'lucide-react';
+import { Loader2, Plus } from '@/components/ui/Icons';
 import { MarketCategory } from '@/types/market';
 
 const CATEGORIES: MarketCategory[] = ['Crypto', 'Sports', 'Politics', 'Entertainment', 'Weather', 'Custom'];

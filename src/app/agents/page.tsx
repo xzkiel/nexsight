@@ -18,7 +18,7 @@ import {
     Globe,
     ChevronDown,
     ChevronUp,
-} from 'lucide-react';
+} from '@/components/ui/Icons';
 
 function CopyButton({ text }: { text: string }) {
     const [copied, setCopied] = useState(false);

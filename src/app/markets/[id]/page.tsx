@@ -9,7 +9,7 @@ import { MarketTabs } from '@/components/market/MarketTabs';
 import { useMarket } from '@/hooks/useMarkets';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { useState } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from '@/components/ui/Icons';
 import Link from 'next/link';
 import { cn } from '@/lib/cn';
 import { buttonVariants } from '@/components/ui/Button';

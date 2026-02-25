@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-import { ArrowUpRight, ArrowDownRight, TrendingUp, History, Wallet, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, TrendingUp, History, Wallet, ArrowRight } from '@/components/ui/Icons';
 
 function PositionCard({ position }: { position: UserPositionData }) {
     const { mutate: claimPayout, isPending: isClaiming } = useClaimPayout();

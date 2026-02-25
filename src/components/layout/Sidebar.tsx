@@ -11,7 +11,7 @@ import {
   Briefcase,
   ShieldAlert,
   Bot,
-} from 'lucide-react';
+} from '@/components/ui/Icons';
 
 const publicNavigation = [
   { name: 'Markets', href: '/markets', icon: LayoutGrid },

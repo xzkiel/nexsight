@@ -1,6 +1,6 @@
 import { Market } from '@/types/market';
 import Link from 'next/link';
-import { TrendingUp, Clock } from 'lucide-react';
+import { TrendingUp, Clock } from '@/components/ui/Icons';
 import { cn } from '@/lib/cn';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';

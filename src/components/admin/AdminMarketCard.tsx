@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { useResolve } from '@/hooks/useResolve';
 import { usePythResolve } from '@/hooks/usePythResolve';
 import { getFeedLabel } from '@/lib/pyth-feeds';
-import { Loader2, Zap } from 'lucide-react';
+import { Loader2, Zap } from '@/components/ui/Icons';
 import dayjs from 'dayjs';
 
 interface AdminMarketCardProps {

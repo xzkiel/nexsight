@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useMarkets } from '@/hooks/useMarkets';
 import { MarketCard } from '@/components/market/MarketCard';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { TrendingUp, Flame, Bot } from 'lucide-react';
+import { TrendingUp, Flame, Bot } from '@/components/ui/Icons';
 
 export default function Home() {
   const { data: markets, isLoading } = useMarkets();

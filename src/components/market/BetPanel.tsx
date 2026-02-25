@@ -10,7 +10,7 @@ import { useClaimPayout } from '@/hooks/useClaimPayout';
 import { useUserPositions } from '@/hooks/useUserPositions';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/Button';
-import { Wallet, ArrowRight, TrendingUp } from 'lucide-react';
+import { Wallet, ArrowRight, TrendingUp } from '@/components/ui/Icons';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 interface BetPanelProps {

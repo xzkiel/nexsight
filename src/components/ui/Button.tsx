@@ -2,7 +2,7 @@ import { cn } from '@/lib/cn';
 import { VariantProps, cva } from 'class-variance-authority';
 import { motion, HTMLMotionProps } from 'framer-motion';
 import React from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from '@/components/ui/Icons';
 
 export const buttonVariants = cva(
     'inline-flex items-center justify-center rounded-[var(--radius-md)] text-[13px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--green-glow-border)] disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]',

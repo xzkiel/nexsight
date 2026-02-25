@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { cn } from '@/lib/cn';
 import { ADMIN_WALLETS } from '@/lib/constants';
-import { LayoutGrid, Trophy, Briefcase, ShieldAlert, Bot } from 'lucide-react';
+import { LayoutGrid, Trophy, Briefcase, ShieldAlert, Bot } from '@/components/ui/Icons';
 
 const publicNavigation = [
   { name: 'Markets', href: '/markets', icon: LayoutGrid },

@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/cn';
-import { FileText, Activity } from 'lucide-react';
+import { FileText, Activity } from '@/components/ui/Icons';
 
 interface MarketTabsProps {
     activeTab: 'overview' | 'activity';

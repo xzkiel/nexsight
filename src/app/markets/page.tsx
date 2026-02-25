@@ -6,7 +6,7 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { useMarkets } from '@/hooks/useMarkets';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { ADMIN_WALLETS } from '@/lib/constants';
-import { Search } from 'lucide-react';
+import { Search } from '@/components/ui/Icons';
 import { useMemo, useState } from 'react';
 
 export default function MarketsPage() {
