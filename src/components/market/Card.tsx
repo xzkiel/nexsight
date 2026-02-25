@@ -11,7 +11,7 @@ interface MarketCardProps extends Market { }
 export function MarketCard(market: MarketCardProps) {
     const { id, title, volume24h, yesPrice, noPrice, image, endTimestamp } = market;
 
-    const formattedVolume = `${(volume24h || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })} SOL`;
+    const formattedVolume = `${((volume24h || 0) / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 })} SOL`;
     const endTime = dayjs(endTimestamp).fromNow(true) + ' left';
 
     return (

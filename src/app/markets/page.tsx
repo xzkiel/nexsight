@@ -10,7 +10,7 @@ import { Search } from '@/components/ui/Icons';
 import { useMemo, useState } from 'react';
 
 export default function MarketsPage() {
-    const { data: markets, isLoading } = useMarkets(1, undefined, false);
+    const { data: markets, isLoading } = useMarkets(1, undefined, true);
     const { publicKey } = useWallet();
     const [search, setSearch] = useState('');
     const isAdmin = useMemo(() => {

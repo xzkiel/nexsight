@@ -41,8 +41,8 @@ export function MarketInfo({ market }: MarketInfoProps) {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-4 border-t border-[var(--border)]">
-                <StatBox label="Volume" value={`${(market.volume24h || 0).toLocaleString()} SOL`} />
-                <StatBox label="Liquidity" value={`${(market.totalCollateral / 1_000_000_000 || 0).toLocaleString()} SOL`} />
+                <StatBox label="Volume" value={`${((market.volume24h || 0) / 1_000_000_000).toLocaleString(undefined, { maximumFractionDigits: 2 })} SOL`} />
+                <StatBox label="Liquidity" value={`${((market.totalCollateral || 0) / 1_000_000_000).toLocaleString(undefined, { maximumFractionDigits: 2 })} SOL`} />
                 <StatBox label="End Date" value={dayjs(market.endTimestamp).format('MMM D, YYYY')} />
                 <StatBox
                     label="Oracle"

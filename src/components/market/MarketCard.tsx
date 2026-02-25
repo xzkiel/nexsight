@@ -80,7 +80,7 @@ export function MarketCard({ id, title, category, volume24h = 0, yesPrice = 0.5,
             <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)]">
                 <span className="flex items-center gap-1">
                     <TrendingUp size={11} />
-                    {volume24h.toLocaleString()} SOL
+                    {(volume24h / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 })} SOL
                 </span>
                 <span className="text-[var(--pump-color)] font-medium opacity-0 group-hover:opacity-100 transition-opacity text-[11px]">
                     Trade →
