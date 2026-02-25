@@ -1,0 +1,16 @@
+<svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="prism-grad" x1="0" y1="0" x2="40" y2="40">
+      <stop offset="0%" stop-color="#55D292"/>
+      <stop offset="100%" stop-color="#9945FF"/>
+    </linearGradient>
+  </defs>
+  <!-- Prism mark -->
+  <path d="M20 4L35 33H5L20 4Z" stroke="url(#prism-grad)" stroke-width="1.8" fill="none"/>
+  <line x1="29" y1="17" x2="35" y2="14" stroke="#55D292" stroke-width="1.2" opacity="0.8"/>
+  <line x1="29" y1="20" x2="36" y2="20" stroke="#6FFFB0" stroke-width="1.2" opacity="0.6"/>
+  <line x1="29" y1="23" x2="35" y2="26" stroke="#9945FF" stroke-width="1.2" opacity="0.8"/>
+  <!-- Wordmark for light backgrounds -->
+  <text x="46" y="27" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="700" fill="#111113" letter-spacing="-0.5">Nex</text>
+  <text x="88" y="27" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="300" fill="#71717A" letter-spacing="-0.5">sight</text>
+</svg>

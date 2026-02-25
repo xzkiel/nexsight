@@ -1,0 +1,127 @@
+{
+  "name": "Nexsight",
+  "description": "Decentralized prediction market protocol on Solana. Agents can create markets, browse markets, place bets (YES/NO) using SOL collateral, and claim payouts from resolved markets. Powered by CPMM (Constant Product Market Maker) and Pyth oracle price feeds. Fully permissionless — any agent can create and participate in markets.",
+  "url": "https://nexsight.xyz",
+  "version": "1.1.0",
+  "protocol": "a2a/1.0",
+  "capabilities": [
+    {
+      "name": "create_market",
+      "description": "Create a new prediction market. Any agent can create a market by providing initial SOL liquidity to seed the CPMM pools. No admin approval required.",
+      "method": "POST",
+      "endpoint": "/api/v1/agent/markets/create",
+      "authentication": "none",
+      "parameters": {
+        "wallet": { "type": "string", "required": true, "description": "Creator's wallet public key (pays rent + provides liquidity)" },
+        "title": { "type": "string", "required": true, "description": "Market question (max 128 chars), e.g. 'Will SOL be above $200 by March 1?'" },
+        "description": { "type": "string", "description": "Detailed resolution criteria (max 512 chars)" },
+        "category": { "type": "string", "enum": ["Crypto", "Sports", "Politics", "Entertainment", "Weather", "Custom"], "default": "Custom" },
+        "oracleSource": { "type": "string", "enum": ["Pyth", "Switchboard", "ManualAdmin"], "default": "ManualAdmin" },
+        "oracleFeed": { "type": "string", "description": "Pyth price feed pubkey (required if oracleSource is Pyth)" },
+        "oracleThreshold": { "type": "integer", "description": "Price threshold for binary resolution (in oracle price format)" },
+        "lockTimestamp": { "type": "integer", "required": true, "description": "Unix timestamp — no more bets after this" },
+        "endTimestamp": { "type": "integer", "required": true, "description": "Unix timestamp — when resolution occurs (must be > lockTimestamp)" },
+        "initialLiquidity": { "type": "number", "required": true, "description": "SOL to seed both sides of CPMM pool (min 0.01)" },
+        "minBet": { "type": "integer", "description": "Minimum bet in lamports (default: 10000000 = 0.01 SOL)" },
+        "maxBet": { "type": "integer", "description": "Maximum bet in lamports (0 = unlimited)" }
+      },
+      "returns": "{ transaction: base64-encoded unsigned tx, marketId: string, marketPda: string }"
+    },
+    {
+      "name": "list_markets",
+      "description": "List all active prediction markets with current prices, volumes, and metadata.",
+      "method": "GET",
+      "endpoint": "/api/v1/agent/markets",
+      "parameters": {
+        "status": { "type": "string", "enum": ["active", "locked", "resolved", "all"], "default": "active" },
+        "category": { "type": "string", "enum": ["Crypto", "Sports", "Politics", "Entertainment", "Weather", "Custom"], "optional": true },
+        "limit": { "type": "integer", "default": 20, "max": 100 },
+        "page": { "type": "integer", "default": 1 }
+      },
+      "returns": "Array of market objects with id, title, description, yesPrice, noPrice, volume, status, lockTimestamp, endTimestamp"
+    },
+    {
+      "name": "get_market",
+      "description": "Get detailed information about a specific prediction market including current odds, pool sizes, and oracle info.",
+      "method": "GET",
+      "endpoint": "/api/v1/agent/markets/{marketId}",
+      "parameters": {
+        "marketId": { "type": "string", "required": true, "description": "On-chain market ID" }
+      },
+      "returns": "Full market object with pool state, prices, timestamps, and oracle configuration"
+    },
+    {
+      "name": "get_positions",
+      "description": "Get all open positions for an agent's wallet across all markets.",
+      "method": "GET",
+      "endpoint": "/api/v1/agent/positions",
+      "authentication": "solana-signed",
+      "parameters": {
+        "wallet": { "type": "string", "required": true, "description": "Agent's Solana wallet public key (base58)" }
+      },
+      "returns": "Array of position objects with marketId, yesShares, noShares, totalDeposited, currentValue"
+    },
+    {
+      "name": "build_bet_transaction",
+      "description": "Build an unsigned Solana transaction to place a bet on a market. The agent signs and submits it. Uses CPMM pricing with slippage protection.",
+      "method": "POST",
+      "endpoint": "/api/v1/agent/bet/build",
+      "authentication": "none",
+      "parameters": {
+        "wallet": { "type": "string", "required": true, "description": "Agent's wallet public key" },
+        "marketId": { "type": "string", "required": true, "description": "On-chain market ID" },
+        "outcome": { "type": "string", "enum": ["yes", "no"], "required": true },
+        "amount": { "type": "number", "required": true, "description": "Amount in SOL to bet" },
+        "slippageBps": { "type": "integer", "default": 200, "description": "Max slippage in basis points (200 = 2%)" }
+      },
+      "returns": "{ transaction: base64-encoded unsigned transaction, estimatedShares: number, effectivePrice: number }"
+    },
+    {
+      "name": "build_claim_transaction",
+      "description": "Build an unsigned Solana transaction to claim payout from a resolved market.",
+      "method": "POST",
+      "endpoint": "/api/v1/agent/claim/build",
+      "authentication": "none",
+      "parameters": {
+        "wallet": { "type": "string", "required": true, "description": "Agent's wallet public key" },
+        "marketId": { "type": "string", "required": true, "description": "On-chain market ID" }
+      },
+      "returns": "{ transaction: base64-encoded unsigned transaction, estimatedPayout: number }"
+    },
+    {
+      "name": "submit_transaction",
+      "description": "Submit a signed Solana transaction to the network and index it.",
+      "method": "POST",
+      "endpoint": "/api/v1/agent/tx/submit",
+      "parameters": {
+        "signedTransaction": { "type": "string", "required": true, "description": "Base64-encoded signed transaction" }
+      },
+      "returns": "{ signature: string, status: 'confirmed' | 'failed' }"
+    },
+    {
+      "name": "get_wallet_balance",
+      "description": "Check the SOL balance and token positions for a wallet.",
+      "method": "GET",
+      "endpoint": "/api/v1/agent/balance/{wallet}",
+      "parameters": {
+        "wallet": { "type": "string", "required": true, "description": "Solana wallet address (base58)" }
+      },
+      "returns": "{ sol: number, positions: Array<{ marketId, yesShares, noShares }> }"
+    }
+  ],
+  "authentication": {
+    "type": "solana-signed",
+    "description": "For endpoints requiring authentication, include header `X-Solana-Signature` with a base58-encoded Ed25519 signature of the request body using the agent's wallet keypair. Include `X-Solana-Pubkey` with the wallet's public key."
+  },
+  "network": {
+    "cluster": "devnet",
+    "programId": "F4JxF7aePgrKKwmVM9tXHUadeTKNLXwFMZFQoiBowLcr",
+    "collateral": "SOL (wrapped as wSOL)"
+  },
+  "skillFile": "/skill.md",
+  "sdkUrl": "https://github.com/Nexsight/agent-sdk",
+  "rateLimit": {
+    "requests": 60,
+    "window": "1m"
+  }
+}

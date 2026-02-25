@@ -1,0 +1,57 @@
+<svg width="1500" height="500" viewBox="0 0 1500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="prism-grad" x1="0" y1="0" x2="500" y2="500">
+      <stop offset="0%" stop-color="#55D292"/>
+      <stop offset="100%" stop-color="#9945FF"/>
+    </linearGradient>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1500" y2="500">
+      <stop offset="0%" stop-color="#111113"/>
+      <stop offset="100%" stop-color="#0A0A0F"/>
+    </linearGradient>
+    <!-- Subtle glow -->
+    <radialGradient id="glow" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#55D292" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#55D292" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1500" height="500" fill="url(#bg-grad)"/>
+  <rect width="1500" height="500" fill="url(#glow)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="166" x2="1500" y2="166" stroke="#FFFFFF" stroke-width="0.5" opacity="0.03"/>
+  <line x1="0" y1="333" x2="1500" y2="333" stroke="#FFFFFF" stroke-width="0.5" opacity="0.03"/>
+  <line x1="500" y1="0" x2="500" y2="500" stroke="#FFFFFF" stroke-width="0.5" opacity="0.03"/>
+  <line x1="1000" y1="0" x2="1000" y2="500" stroke="#FFFFFF" stroke-width="0.5" opacity="0.03"/>
+
+  <!-- Large decorative prism (background, faded) -->
+  <g transform="translate(1050, 100)" opacity="0.08">
+    <path d="M120 0L240 200H0L120 0Z" stroke="url(#prism-grad)" stroke-width="2" fill="none"/>
+    <line x1="168" y1="80" x2="220" y2="60" stroke="#55D292" stroke-width="1.5"/>
+    <line x1="168" y1="100" x2="230" y2="100" stroke="#6FFFB0" stroke-width="1.5"/>
+    <line x1="168" y1="120" x2="220" y2="140" stroke="#9945FF" stroke-width="1.5"/>
+  </g>
+
+  <!-- Centered logo group -->
+  <g transform="translate(750, 250)">
+    <!-- Prism logomark -->
+    <g transform="translate(-120, -28)">
+      <path d="M30 0L57 50H3L30 0Z" stroke="url(#prism-grad)" stroke-width="2.5" fill="none"/>
+      <line x1="47" y1="20" x2="60" y2="14" stroke="#55D292" stroke-width="1.5" opacity="0.9"/>
+      <line x1="47" y1="25" x2="62" y2="25" stroke="#6FFFB0" stroke-width="1.5" opacity="0.7"/>
+      <line x1="47" y1="30" x2="60" y2="36" stroke="#9945FF" stroke-width="1.5" opacity="0.9"/>
+    </g>
+    <!-- Wordmark -->
+    <text x="-48" y="16" font-family="Inter, system-ui, sans-serif" font-size="48" letter-spacing="-1">
+      <tspan font-weight="700" fill="#FFFFFF">Nex</tspan><tspan font-weight="300" fill="#a1a1aa">sight</tspan>
+    </text>
+  </g>
+
+  <!-- Decorative scattered dots -->
+  <circle cx="200" cy="120" r="1.5" fill="#55D292" opacity="0.15"/>
+  <circle cx="350" cy="380" r="1" fill="#9945FF" opacity="0.12"/>
+  <circle cx="1300" cy="150" r="1.5" fill="#55D292" opacity="0.1"/>
+  <circle cx="1200" cy="400" r="1" fill="#6FFFB0" opacity="0.08"/>
+  <circle cx="150" cy="350" r="1" fill="#9945FF" opacity="0.1"/>
+</svg>

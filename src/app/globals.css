@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
+
+  --color-card: var(--bg-card);
+  --color-card-foreground: var(--text-primary);
+
+  --color-popover: var(--bg-card);
+  --color-popover-foreground: var(--text-primary);
+
+  --color-primary: var(--green);
+  --color-primary-foreground: #000000;
+
+  --color-secondary: var(--bg-tertiary);
+  --color-secondary-foreground: var(--text-primary);
+
+  --color-muted: var(--bg-card);
+  --color-muted-foreground: var(--text-muted);
+
+  --color-accent: var(--green);
+  --color-accent-foreground: #000000;
+
+  --color-destructive: var(--dump-color);
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: var(--border);
+  --color-input: var(--bg-input);
+  --color-ring: var(--green);
+
+  /* PumpDash Brand */
+  --color-pump: var(--pump-color);
+  --color-dump: var(--dump-color);
+  --color-green-brand: var(--green-brand);
+
+  --color-bg-base: var(--bg-base);
+  --color-bg-card: var(--bg-card);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-bg-input: var(--bg-input);
+  --color-bg-sidebar: var(--bg-sidebar);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+
+  --color-border-default: var(--border);
+  --color-border-light: var(--border-light);
+
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-success: var(--success);
+  --color-error: var(--error);
+
+  --color-sol-purple: var(--sol-purple);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+:root {
+  /* Brand Greens */
+  --green: #55D292;
+  --green-alt: #54D592;
+  --green-brand: #5FCB87;
+  --green-dim: #3DA86F;
+  --green-bright: #6FFFB0;
+
+  /* Surfaces */
+  --bg-base: #111113;
+  --bg-secondary: #18181b;
+  --bg-card: #18181b;
+  --bg-tertiary: #1f1f23;
+  --bg-card-hover: #1f1f23;
+  --bg-input: #0e0e10;
+  --bg-sidebar: #0e0e10;
+  --bg-modal: rgba(0, 0, 0, 0.80);
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --text-disabled: #3f3f46;
+  --text-green: #55D292;
+
+  /* Pump (Bullish) */
+  --pump-color: #55D292;
+  --pump-bg: rgba(85, 210, 146, 0.08);
+  --pump-bg-hover: rgba(85, 210, 146, 0.14);
+  --pump-border: rgba(85, 210, 146, 0.30);
+  --pump-glow: 0 0 20px rgba(85, 210, 146, 0.25);
+
+  /* Dump (Bearish) */
+  --dump-color: #FF4444;
+  --dump-bg: rgba(255, 68, 68, 0.08);
+  --dump-bg-hover: rgba(255, 68, 68, 0.14);
+  --dump-border: rgba(255, 68, 68, 0.30);
+  --dump-glow: 0 0 20px rgba(255, 68, 68, 0.25);
+
+  /* Borders */
+  --border: #27272a;
+  --border-light: #3f3f46;
+
+  /* Status */
+  --warning: #FFB020;
+  --info: #3B9EFF;
+  --success: #55D292;
+  --error: #FF4444;
+  --sol-purple: #9945FF;
+
+  /* Glow */
+  --green-glow: rgba(85, 210, 146, 0.15);
+  --green-glow-strong: rgba(85, 210, 146, 0.30);
+  --green-glow-border: rgba(85, 210, 146, 0.25);
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body), 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-light);
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.03) 25%,
+      rgba(255, 255, 255, 0.06) 50%,
+      rgba(255, 255, 255, 0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Wallet Adapter Overrides */
+.wallet-adapter-button-trigger {
+  background-color: var(--green) !important;
+  border: none !important;
+  color: #000 !important;
+  font-family: var(--font-body), 'Inter', sans-serif !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  height: 2.25rem !important;
+  padding: 0 1rem !important;
+  border-radius: 10px !important;
+  transition: all 0.15s !important;
+  justify-content: center !important;
+  box-shadow: none !important;
+}
+
+.wallet-adapter-button-trigger:hover {
+  background-color: var(--green-dim) !important;
+  transform: none;
+}
+
+.wallet-adapter-modal-wrapper {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+}
+
+.wallet-adapter-modal-button-close {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.wallet-adapter-dropdown-list {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  padding: 0.375rem !important;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6) !important;
+  margin-top: 0.375rem !important;
+}
+
+.wallet-adapter-dropdown-list-item {
+  color: var(--text-secondary) !important;
+  font-family: var(--font-body), 'Inter', sans-serif !important;
+  font-size: 0.8125rem !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 6px !important;
+  transition: all 0.15s !important;
+}
+
+.wallet-adapter-dropdown-list-item:hover {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+}
+
+.wallet-adapter-dropdown-list-item:not(:last-child) {
+  margin-bottom: 2px !important;
+}

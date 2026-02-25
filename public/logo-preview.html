@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexsight — Logo Preview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green: #55D292;
+    --green-bright: #6FFFB0;
+    --violet: #9945FF;
+    --bg-base: #111113;
+    --bg-card: #18181b;
+    --bg-tertiary: #1f1f23;
+    --border: #27272a;
+    --border-light: #3f3f46;
+    --text-primary: #FFFFFF;
+    --text-secondary: #a1a1aa;
+    --text-muted: #52525b;
+  }
+
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--green), var(--violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section { margin-bottom: 56px; }
+
+  /* Logo grid */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .logo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .logo-card:hover { border-color: var(--border-light); }
+
+  .logo-card .label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .logo-card .desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* Wordmark styles */
+  .wordmark {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .wordmark-text {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .wordmark-text .bold { font-weight: 800; color: #fff; }
+  .wordmark-text .light { font-weight: 300; color: var(--text-secondary); }
+
+  /* Size demo */
+  .size-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  .size-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .size-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Light background preview */
+  .light-bg {
+    background: #FAFAFA;
+    border-color: #E4E4E7;
+  }
+
+  .light-bg .label { color: #71717A; }
+  .light-bg .desc { color: #52525B; }
+
+  /* Combos row */
+  .combo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .combo-card {
+    border-radius: 14px;
+    padding: 28px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .combo-label {
+    font-size: 10px;
+    text-align: center;
+    margin-top: 6px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* Navbar preview */
+  .navbar-preview {
+    background: rgba(17, 17, 19, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 32px; }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .nav-links span:first-child { color: var(--green); }
+
+  .nav-wallet {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-secondary);
+  }
+
+  /* Favicon strip */
+  .favicon-strip {
+    display: flex;
+    gap: 20px;
+    align-items: end;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Nexsight — Logo Concepts</h1>
+  <p class="subtitle">Four directions for the logomark, wordmark combinations, and usage previews.</p>
+
+  <!-- ═══════════ CONCEPT 1: PRISM ═══════════ -->
+  <div class="section">
+    <div class="section-title">Concept 1 — Prism</div>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="label">Logomark</div>
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <defs>
+            <linearGradient id="prism-grad" x1="0" y1="0" x2="64" y2="64">
+              <stop offset="0%" stop-color="#55D292"/>
+              <stop offset="100%" stop-color="#9945FF"/>
+            </linearGradient>
+          </defs>
+          <!-- Prism triangle with light refraction -->
+          <path d="M32 8L56 52H8L32 8Z" stroke="url(#prism-grad)" stroke-width="2.5" fill="none"/>
+          <!-- Refracted light beams -->
+          <line x1="18" y1="28" x2="8" y2="24" stroke="#55D292" stroke-width="1.5" opacity="0.8"/>
+          <line x1="18" y1="32" x2="6" y2="32" stroke="#6FFFB0" stroke-width="1.5" opacity="0.6"/>
+          <line x1="18" y1="36" x2="8" y2="40" stroke="#9945FF" stroke-width="1.5" opacity="0.8"/>
+          <!-- Inner light path -->
+          <line x1="18" y1="32" x2="46" y2="32" stroke="url(#prism-grad)" stroke-width="1" opacity="0.3"/>
+          <!-- Output beams -->
+          <line x1="46" y1="28" x2="58" y2="20" stroke="#55D292" stroke-width="1.5" opacity="0.9"/>
+          <line x1="46" y1="32" x2="60" y2="32" stroke="#6FFFB0" stroke-width="1.5" opacity="0.7"/>
+          <line x1="46" y1="36" x2="58" y2="44" stroke="#9945FF" stroke-width="1.5" opacity="0.9"/>
+        </svg>
+        <p class="desc">Prism refracting light — seeing the full spectrum of outcomes. Ties to the emerald→violet gradient.</p>
+      </div>
+
+      <div class="logo-card">
+        <div class="label">Wordmark</div>
+        <div class="wordmark">
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+            <path d="M32 8L56 52H8L32 8Z" stroke="url(#prism-grad)" stroke-width="2.5" fill="none"/>
+            <line x1="46" y1="28" x2="58" y2="20" stroke="#55D292" stroke-width="1.5" opacity="0.9"/>
+            <line x1="46" y1="32" x2="60" y2="32" stroke="#6FFFB0" stroke-width="1.5" opacity="0.7"/>
+            <line x1="46" y1="36" x2="58" y2="44" stroke="#9945FF" stroke-width="1.5" opacity="0.9"/>
+          </svg>
+          <span class="wordmark-text"><span class="bold">Nex</span><span class="light">sight</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ CONCEPT 2: EYE + ARROW ═══════════ -->
+  <div class="section">
+    <div class="section-title">Concept 2 — Forward Eye</div>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="label">Logomark</div>
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <defs>
+            <linearGradient id="eye-grad" x1="0" y1="32" x2="64" y2="32">
+              <stop offset="0%" stop-color="#55D292"/>
+              <stop offset="100%" stop-color="#9945FF"/>
+            </linearGradient>
+          </defs>
+          <!-- Eye shape -->
+          <path d="M6 32C6 32 18 16 32 16C46 16 58 32 58 32C58 32 46 48 32 48C18 48 6 32 6 32Z" stroke="url(#eye-grad)" stroke-width="2.5" fill="none"/>
+          <!-- Iris -->
+          <circle cx="32" cy="32" r="8" stroke="url(#eye-grad)" stroke-width="2" fill="none"/>
+          <!-- Pupil -->
+          <circle cx="32" cy="32" r="3" fill="url(#eye-grad)"/>
+          <!-- Forward chevron accent -->
+          <path d="M50 26L56 32L50 38" stroke="#55D292" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+        </svg>
+        <p class="desc">Minimal eye with forward chevron — "seeing what's next." Direct, recognizable.</p>
+      </div>
+
+      <div class="logo-card">
+        <div class="label">Wordmark</div>
+        <div class="wordmark">
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+            <path d="M6 32C6 32 18 16 32 16C46 16 58 32 58 32C58 32 46 48 32 48C18 48 6 32 6 32Z" stroke="url(#eye-grad)" stroke-width="2.5" fill="none"/>
+            <circle cx="32" cy="32" r="8" stroke="url(#eye-grad)" stroke-width="2" fill="none"/>
+            <circle cx="32" cy="32" r="3" fill="url(#eye-grad)"/>
+            <path d="M50 26L56 32L50 38" stroke="#55D292" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+          </svg>
+          <span class="wordmark-text"><span class="bold">Nex</span><span class="light">sight</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ CONCEPT 3: SIGNAL N ═══════════ -->
+  <div class="section">
+    <div class="section-title">Concept 3 — Signal N</div>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="label">Logomark</div>
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <defs>
+            <linearGradient id="sig-grad" x1="0" y1="64" x2="64" y2="0">
+              <stop offset="0%" stop-color="#55D292"/>
+              <stop offset="100%" stop-color="#9945FF"/>
+            </linearGradient>
+          </defs>
+          <!-- Rounded square container -->
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+          <!-- N as signal waveform — bold strokes -->
+          <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Small signal dots -->
+          <circle cx="18" cy="18" r="2.5" fill="#111113"/>
+          <circle cx="46" cy="18" r="2.5" fill="#111113"/>
+        </svg>
+        <p class="desc">Letter N as a rising signal/waveform on gradient background. Bold, app-icon ready.</p>
+      </div>
+
+      <div class="logo-card">
+        <div class="label">Wordmark</div>
+        <div class="wordmark">
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+            <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+            <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="18" cy="18" r="2.5" fill="#111113"/>
+            <circle cx="46" cy="18" r="2.5" fill="#111113"/>
+          </svg>
+          <span class="wordmark-text"><span class="bold">Nex</span><span class="light">sight</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ CONCEPT 4: CROSSHAIR LENS ═══════════ -->
+  <div class="section">
+    <div class="section-title">Concept 4 — Crosshair Lens</div>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="label">Logomark</div>
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <defs>
+            <linearGradient id="cross-grad" x1="0" y1="0" x2="64" y2="64">
+              <stop offset="0%" stop-color="#55D292"/>
+              <stop offset="100%" stop-color="#9945FF"/>
+            </linearGradient>
+          </defs>
+          <!-- Outer ring -->
+          <circle cx="32" cy="32" r="24" stroke="url(#cross-grad)" stroke-width="2.5" fill="none"/>
+          <!-- Inner ring -->
+          <circle cx="32" cy="32" r="10" stroke="url(#cross-grad)" stroke-width="1.5" fill="none"/>
+          <!-- Center dot -->
+          <circle cx="32" cy="32" r="3" fill="url(#cross-grad)"/>
+          <!-- Crosshair lines -->
+          <line x1="32" y1="4" x2="32" y2="18" stroke="url(#cross-grad)" stroke-width="1.5"/>
+          <line x1="32" y1="46" x2="32" y2="60" stroke="url(#cross-grad)" stroke-width="1.5"/>
+          <line x1="4" y1="32" x2="18" y2="32" stroke="url(#cross-grad)" stroke-width="1.5"/>
+          <line x1="46" y1="32" x2="60" y2="32" stroke="url(#cross-grad)" stroke-width="1.5"/>
+        </svg>
+        <p class="desc">Precision crosshair — "sight" taken literally. Clean at any size, timeless.</p>
+      </div>
+
+      <div class="logo-card">
+        <div class="label">Wordmark</div>
+        <div class="wordmark">
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="24" stroke="url(#cross-grad)" stroke-width="2.5" fill="none"/>
+            <circle cx="32" cy="32" r="10" stroke="url(#cross-grad)" stroke-width="1.5" fill="none"/>
+            <circle cx="32" cy="32" r="3" fill="url(#cross-grad)"/>
+            <line x1="32" y1="4" x2="32" y2="18" stroke="url(#cross-grad)" stroke-width="1.5"/>
+            <line x1="32" y1="46" x2="32" y2="60" stroke="url(#cross-grad)" stroke-width="1.5"/>
+            <line x1="4" y1="32" x2="18" y2="32" stroke="url(#cross-grad)" stroke-width="1.5"/>
+            <line x1="46" y1="32" x2="60" y2="32" stroke="url(#cross-grad)" stroke-width="1.5"/>
+          </svg>
+          <span class="wordmark-text"><span class="bold">Nex</span><span class="light">sight</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ USAGE: NAVBAR PREVIEW ═══════════ -->
+  <div class="section">
+    <div class="section-title">In Context — Navbar</div>
+
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <!-- With each concept -->
+      <div class="navbar-preview">
+        <div class="nav-left">
+          <div class="wordmark" style="gap: 8px;">
+            <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+              <path d="M32 8L56 52H8L32 8Z" stroke="url(#prism-grad)" stroke-width="2.5" fill="none"/>
+              <line x1="46" y1="28" x2="56" y2="22" stroke="#55D292" stroke-width="1.5" opacity="0.8"/>
+              <line x1="46" y1="36" x2="56" y2="42" stroke="#9945FF" stroke-width="1.5" opacity="0.8"/>
+            </svg>
+            <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.3px;"><span style="color:#fff">Nex</span><span style="color: var(--text-secondary); font-weight: 400">sight</span></span>
+          </div>
+          <div class="nav-links">
+            <span>Markets</span>
+            <span>Portfolio</span>
+            <span>Leaderboard</span>
+            <span>Agents</span>
+          </div>
+        </div>
+        <div class="nav-wallet">0x1a3f...c8d2</div>
+      </div>
+
+      <div class="navbar-preview">
+        <div class="nav-left">
+          <div class="wordmark" style="gap: 8px;">
+            <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+              <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+              <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="18" cy="18" r="2.5" fill="#111113"/>
+              <circle cx="46" cy="18" r="2.5" fill="#111113"/>
+            </svg>
+            <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.3px;"><span style="color:#fff">Nex</span><span style="color: var(--text-secondary); font-weight: 400">sight</span></span>
+          </div>
+          <div class="nav-links">
+            <span>Markets</span>
+            <span>Portfolio</span>
+            <span>Leaderboard</span>
+            <span>Agents</span>
+          </div>
+        </div>
+        <div class="nav-wallet">0x1a3f...c8d2</div>
+      </div>
+
+      <div class="navbar-preview">
+        <div class="nav-left">
+          <div class="wordmark" style="gap: 8px;">
+            <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+              <path d="M6 32C6 32 18 16 32 16C46 16 58 32 58 32C58 32 46 48 32 48C18 48 6 32 6 32Z" stroke="url(#eye-grad)" stroke-width="2.5" fill="none"/>
+              <circle cx="32" cy="32" r="8" stroke="url(#eye-grad)" stroke-width="2" fill="none"/>
+              <circle cx="32" cy="32" r="3" fill="url(#eye-grad)"/>
+            </svg>
+            <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.3px;"><span style="color:#fff">Nex</span><span style="color: var(--text-secondary); font-weight: 400">sight</span></span>
+          </div>
+          <div class="nav-links">
+            <span>Markets</span>
+            <span>Portfolio</span>
+            <span>Leaderboard</span>
+            <span>Agents</span>
+          </div>
+        </div>
+        <div class="nav-wallet">0x1a3f...c8d2</div>
+      </div>
+
+      <div class="navbar-preview">
+        <div class="nav-left">
+          <div class="wordmark" style="gap: 8px;">
+            <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="24" stroke="url(#cross-grad)" stroke-width="2.5" fill="none"/>
+              <circle cx="32" cy="32" r="10" stroke="url(#cross-grad)" stroke-width="1.5" fill="none"/>
+              <circle cx="32" cy="32" r="3" fill="url(#cross-grad)"/>
+              <line x1="32" y1="4" x2="32" y2="18" stroke="url(#cross-grad)" stroke-width="1.5"/>
+              <line x1="32" y1="46" x2="32" y2="60" stroke="url(#cross-grad)" stroke-width="1.5"/>
+              <line x1="4" y1="32" x2="18" y2="32" stroke="url(#cross-grad)" stroke-width="1.5"/>
+              <line x1="46" y1="32" x2="60" y2="32" stroke="url(#cross-grad)" stroke-width="1.5"/>
+            </svg>
+            <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.3px;"><span style="color:#fff">Nex</span><span style="color: var(--text-secondary); font-weight: 400">sight</span></span>
+          </div>
+          <div class="nav-links">
+            <span>Markets</span>
+            <span>Portfolio</span>
+            <span>Leaderboard</span>
+            <span>Agents</span>
+          </div>
+        </div>
+        <div class="nav-wallet">0x1a3f...c8d2</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ USAGE: DARK vs LIGHT ═══════════ -->
+  <div class="section">
+    <div class="section-title">Dark vs Light Background</div>
+    <div class="combo-grid">
+      <div>
+        <div class="combo-card" style="background: var(--bg-base);">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+            <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+            <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size: 20px; font-weight: 700; letter-spacing: -0.3px;"><span style="color:#fff">Nex</span><span style="color: var(--text-secondary); font-weight: 300">sight</span></span>
+        </div>
+        <div class="combo-label">On Dark (#111113)</div>
+      </div>
+      <div>
+        <div class="combo-card" style="background: #FAFAFA; border-color: #E4E4E7;">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+            <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+            <path d="M18 46V18L46 46V18" stroke="#FAFAFA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size: 20px; font-weight: 700; letter-spacing: -0.3px;"><span style="color:#111113">Nex</span><span style="color: #71717A; font-weight: 300">sight</span></span>
+        </div>
+        <div class="combo-label">On Light (#FAFAFA)</div>
+      </div>
+      <div>
+        <div class="combo-card" style="background: var(--bg-base);">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+            <rect x="4" y="4" width="56" height="56" rx="14" stroke="#fff" stroke-width="2" fill="none"/>
+            <path d="M18 46V18L46 46V18" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size: 20px; font-weight: 700; letter-spacing: -0.3px; color:#fff;">Nexsight</span>
+        </div>
+        <div class="combo-label">Mono White</div>
+      </div>
+      <div>
+        <div class="combo-card" style="background: #FAFAFA; border-color: #E4E4E7;">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+            <rect x="4" y="4" width="56" height="56" rx="14" stroke="#111113" stroke-width="2" fill="none"/>
+            <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size: 20px; font-weight: 700; letter-spacing: -0.3px; color:#111113;">Nexsight</span>
+        </div>
+        <div class="combo-label">Mono Dark</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ FAVICON SIZES ═══════════ -->
+  <div class="section">
+    <div class="section-title">Favicon / App Icon Sizes</div>
+    <div class="favicon-strip">
+      <div class="size-item">
+        <svg width="16" height="16" viewBox="0 0 64 64" fill="none">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+          <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="size-label">16px</span>
+      </div>
+      <div class="size-item">
+        <svg width="24" height="24" viewBox="0 0 64 64" fill="none">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+          <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="size-label">24px</span>
+      </div>
+      <div class="size-item">
+        <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+          <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="size-label">32px</span>
+      </div>
+      <div class="size-item">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+          <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="18" r="2.5" fill="#111113"/>
+          <circle cx="46" cy="18" r="2.5" fill="#111113"/>
+        </svg>
+        <span class="size-label">48px</span>
+      </div>
+      <div class="size-item">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+          <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="18" r="2.5" fill="#111113"/>
+          <circle cx="46" cy="18" r="2.5" fill="#111113"/>
+        </svg>
+        <span class="size-label">64px</span>
+      </div>
+      <div class="size-item">
+        <svg width="128" height="128" viewBox="0 0 64 64" fill="none">
+          <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#sig-grad)"/>
+          <path d="M18 46V18L46 46V18" stroke="#111113" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="18" r="2.5" fill="#111113"/>
+          <circle cx="46" cy="18" r="2.5" fill="#111113"/>
+        </svg>
+        <span class="size-label">128px</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head><title>SVG to PNG</title></head>
+<body style="background:#111;color:#fff;font-family:sans-serif;padding:40px;">
+<h2>SVG → PNG Exporter</h2>
+<p>Click a button to download that logo as PNG.</p>
+<div style="margin:20px 0;display:flex;gap:12px;flex-wrap:wrap;">
+  <button onclick="convert('logo.svg','logo.png',512,512)">logo.svg (512px)</button>
+  <button onclick="convert('logo-mark.svg','logo-mark.png',512,512)">logo-mark.svg (512px)</button>
+  <button onclick="convert('logo-wordmark.svg','logo-wordmark.png',1600,320)">logo-wordmark.svg (1600px)</button>
+  <button onclick="convert('logo-wordmark-light.svg','logo-wordmark-light.png',1600,320)">logo-wordmark-light.svg (1600px)</button>
+  <button onclick="convert('logo-mono-white.svg','logo-mono-white.png',512,512)">logo-mono-white.svg (512px)</button>
+  <button onclick="convert('logo-mono-dark.svg','logo-mono-dark.png',512,512)">logo-mono-dark.svg (512px)</button>
+  <button onclick="convert('twitter-header.svg','twitter-header.png',1500,500)">twitter-header.svg (1500x500)</button>
+</div>
+<div id="preview"></div>
+<script>
+function convert(src, filename, w, h) {
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  img.onload = function() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(img, 0, 0, w, h);
+    const a = document.createElement('a');
+    a.download = filename;
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+    // Show preview
+    const preview = document.getElementById('preview');
+    preview.innerHTML = '<p>Preview of ' + filename + ':</p>';
+    const previewImg = new Image();
+    previewImg.src = canvas.toDataURL('image/png');
+    previewImg.style.maxWidth = '400px';
+    previewImg.style.border = '1px solid #333';
+    previewImg.style.borderRadius = '8px';
+    preview.appendChild(previewImg);
+  };
+  img.src = src;
+}
+</script>
+<style>
+button {
+  background: #55D292; color: #111; border: none; padding: 10px 16px;
+  border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 13px;
+}
+button:hover { background: #6FFFB0; }
+</style>
+</body>
+</html>
