@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/providers';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { TopBar } from '@/components/layout/TopBar';
+import { TrendingMarquee } from '@/components/layout/TrendingMarquee';
 import { MobileNav } from '@/components/layout/MobileNav';
 import { cn } from '@/lib/cn';
 import { Toaster } from 'sonner';
@@ -38,6 +40,9 @@ export default function RootLayout({
 
           {/* Main area offset by sidebar */}
           <div className="md:ml-[220px] flex flex-col min-h-screen">
+            <Suspense fallback={<div className="h-9 w-full bg-[var(--bg-base)] border-b border-[var(--border)] shrink-0" />}>
+              <TrendingMarquee />
+            </Suspense>
             <TopBar />
             <main className="flex-1 overflow-auto pb-16 md:pb-0">
               {children}
